@@ -1,0 +1,21 @@
+.list-group {
+  width: 15%;
+}
+
+.list-group-item {
+  background-color: lightblue;
+  margin-top: 10px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.list-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+span {
+    margin-left: 20px;
+}

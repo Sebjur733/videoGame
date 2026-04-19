@@ -1,0 +1,10 @@
+{
+  "title": "Game List",
+  "count": 2,
+  "games": [
+    { "id": 1, "name": "FIFA", "genre": "Sports", "imageUrl": "/images/fifa.jpg" },
+    { "id": 2, "name": "Minecraft", "genre": "Sandbox", "imageUrl": "/images/minecraft.jpg" },
+    { "id": 3, "name": "Resident evil", "genre": "Horror", "imageUrl": "img/re1.jpg" }
+
+  ]
+}
