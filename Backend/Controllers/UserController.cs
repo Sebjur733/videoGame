@@ -22,6 +22,6 @@ public async Task<IActionResult> Receive([FromBody] User user)
 
     var result = _userService.RegUser(user.Username, user.Password);
 
-    return Ok(result);
+    return Ok(new { message = result });
 }
 }

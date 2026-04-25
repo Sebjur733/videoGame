@@ -37,14 +37,14 @@ function AuthPage() {
 
       <button
         type="button"
-        onClick={() => sendRequest("https://localhost:5001/api/user/login")}
+        onClick={() => sendRequest("http://localhost:5200/api/user/login")}
       >
         Login
       </button>
 
       <button
         type="button"
-        onClick={() => sendRequest("https://localhost:5001/api/user/register")}
+        onClick={() => sendRequest("http://localhost:5200/api/user/register")}
       >
         Register
       </button>
