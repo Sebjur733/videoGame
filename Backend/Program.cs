@@ -38,6 +38,7 @@ builder.Services.AddControllers();
 // Registers IgdbService in the dependency injection container 
 // (Scoped = one instance per HTTP request)
 builder.Services.AddScoped<IgdbService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddCors(options =>
 {
@@ -49,9 +50,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Sett opp PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite("Data Source=app.db"));
 
 
 var app = builder.Build();

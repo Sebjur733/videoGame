@@ -39,7 +39,7 @@ public class IgdbService
         client.DefaultRequestHeaders.Add("Client-ID", clientId);
         client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-        var body = $"search \"{query}\"; fields name; limit 10;";
+        var body = $"fields name, cover.image_id, rating; where name ~ *\"{query}\"*; sort rating desc; limit 10;";
 
         var response = await client.PostAsync(
             "https://api.igdb.com/v4/games",

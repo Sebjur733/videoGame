@@ -1,14 +1,18 @@
 import { useState } from "react";
+import "./ListGroup.css";
 
 type Game = {
   id: number;
   name: string;
+  cover?: {
+    image_id: string;
+  };
 };
 
 type GameList = Game[];
 
 function ListGroup() {
-  const [gameList, setGameList] = useState<string[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
 
   async function searchGame(e: React.FormEvent) {
     e.preventDefault();
@@ -24,10 +28,11 @@ function ListGroup() {
     });
 
     const data: GameList = await res.json();
+    console.log(data);
 
-    const gameNames = data.map(g => g.name);
+    setGames(data);
 
-    setGameList(gameNames);
+    
   }
 
   return (
@@ -40,12 +45,27 @@ function ListGroup() {
       </form>
 
       <ul>
-        {gameList.map((g, i) => (
-          <li key={i}>{g}</li>
-        ))}
-      </ul>
+  {games.map((g) => (
+  <li key={g.id} className="game-item">
+    <img
+      src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${g.cover?.image_id}.jpg`}
+      alt={g.name}
+    />
+    <span>{g.name}</span>
+
+    <button onClick={() => addGame(g)}>
+      Add
+    </button>
+  </li>
+))}
+  
+</ul>
     </>
   );
+}
+
+function addGame(game: Game) {
+  console.log("Legger til:", game);
 }
 
 export default ListGroup;
