@@ -15,7 +15,7 @@ public class UserController : ControllerBase
 
 // Handles user reg
     [HttpPost("register")]
-public async Task<IActionResult> Receive([FromBody] User user)
+public async Task<IActionResult> Register([FromBody] User user)
 {
     Console.WriteLine(user.Username);
     Console.WriteLine(user.Password);
@@ -24,4 +24,19 @@ public async Task<IActionResult> Receive([FromBody] User user)
 
     return Ok(new { message = result });
 }
+
+
+// Handles user reg
+    [HttpPost("login")]
+public async Task<IActionResult> Login([FromBody] User user)
+{
+    Console.WriteLine(user.Username);
+    Console.WriteLine(user.Password);
+
+    var result = _userService.LogUser(user.Username, user.Password);
+
+    return Ok(new { message = result });
+}
+
+
 }
