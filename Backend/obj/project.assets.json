@@ -2473,24 +2473,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sebaj\\.nuget\\packages\\": {}
+    "C:\\Users\\seban\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sebaj\\Documents\\VideoGame\\videoGame\\backend\\Backend.csproj",
+      "projectUniqueName": "D:\\react\\testreact\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\sebaj\\Documents\\VideoGame\\videoGame\\backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\sebaj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sebaj\\Documents\\VideoGame\\videoGame\\backend\\obj\\",
+      "projectPath": "D:\\react\\testreact\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\seban\\.nuget\\packages\\",
+      "outputPath": "D:\\react\\testreact\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sebaj\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\seban\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2509,7 +2511,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
@@ -2557,7 +2559,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
