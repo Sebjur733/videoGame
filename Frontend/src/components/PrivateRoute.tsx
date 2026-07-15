@@ -1,12 +1,17 @@
-import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
+import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../api/auth";
 
 type Props = {
   children: ReactNode;
 };
 
-export default function PrivateRoute({ children }: Props) {
-  const isAuthenticated = localStorage.getItem("auth") === "true";
+function ProtectedRoute({ children }: Props) {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
+  }
 
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+  return <>{children}</>;
 }
+
+export default ProtectedRoute;

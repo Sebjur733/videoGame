@@ -1,5 +1,7 @@
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Backend.DTOs;
 
 public class IgdbService
 {
@@ -11,8 +13,13 @@ public class IgdbService
         _config = config;
     }
 
+private static readonly JsonSerializerOptions IgdbJsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
 //Task for searching games
-    public async Task<string> SearchGames(string query)
+    public async Task<List<GameSearchResultDto>> SearchGames(string query)
     {
         var client = new HttpClient();
 
@@ -47,7 +54,33 @@ public class IgdbService
         );
 
         Console.WriteLine(response);
-        return await response.Content.ReadAsStringAsync();
-        
+
+        var json = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+            throw new InvalidOperationException($"IGDB error: {(int)response.StatusCode} — {json}");
+
+        var igdbItems = JsonSerializer.Deserialize<List<IgdbGameJson>>(json, IgdbJsonOptions)
+                        ?? new List<IgdbGameJson>();
+
+        return igdbItems.Select(g => new GameSearchResultDto
+        {
+            Id = g.Id,
+            GameName = g.Name ?? "",
+            CoverId = g.Cover?.ImageId,
+            AlreadyInLibrary = false
+        }).ToList();
+    }
+
+    private sealed class IgdbGameJson
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public IgdbCoverJson? Cover { get; set; }
+    }
+
+    private sealed class IgdbCoverJson
+    {
+        [JsonPropertyName("image_id")]
+        public string? ImageId { get; set; }
     }
 }

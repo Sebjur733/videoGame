@@ -1,38 +1,24 @@
 using Backend.Data;
 using Backend.Models;
+using System.Linq;
 
 public class UserService
 {
-    private readonly AppDbContext _context;
+    private readonly UserDbContext _context;
 
-    public UserService(AppDbContext context)
+    public UserService(UserDbContext context)
     {
         _context = context;
     }
 
-    public string RegUser(string username, string password)
+    public void CreateUser(User user)
     {
-        var user = new User
-        {
-            Username = username,
-            Password = password
-        };
-
         _context.Users.Add(user);
         _context.SaveChanges();
-
-        return "User created";
     }
 
-    public string LogUser(string username, string password)
+    public User? GetUserByUsername(string username)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Username == username);
-        if (user == null)
-        return "User not found";
-
-        if (user.Password != password)
-            return "Wrong password";
-
-    return "Login success";
+        return _context.Users.FirstOrDefault(u => u.Username == username);
     }
 }

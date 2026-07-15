@@ -2,8 +2,8 @@ import React from 'react'
 
 function Message() {
     //Placeholder:
-    const userName = 'Sebastian';
-  return <h1>Hello {userName}</h1>
+    const username = localStorage.getItem("username");
+  return <h1>Welcome {username}</h1>;
 }
 
 export default Message;

@@ -329,3 +329,11 @@ C:\Users\sebaj\Documents\VideoGame\videoGame\backend\obj\Debug\net10.0\swae.buil
 C:\Users\sebaj\Documents\VideoGame\videoGame\backend\obj\Debug\net10.0\Backend.csproj.Up2Date
 C:\Users\sebaj\Documents\VideoGame\videoGame\backend\obj\Debug\net10.0\Backend.genruntimeconfig.cache
 C:\Users\sebaj\Documents\VideoGame\videoGame\backend\obj\Debug\net10.0\ref\Backend.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\react\testreact\backend\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\react\testreact\backend\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
