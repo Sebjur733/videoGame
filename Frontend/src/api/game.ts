@@ -1,4 +1,4 @@
-import type {Game} from '../components/ListGroup';
+import type { Game } from "../types/Game";
 import axios from 'axios';
 
 

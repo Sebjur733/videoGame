@@ -1,26 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getGames } from "../api/game";
-import type { Game } from "./ListGroup";
+import type { Game } from "../types/Game";
+import "./MyGames.css";
 
-const testGames: Game[] = [
-  {
-    id: 1,
-    gameName: "Chess",
-    alreadyInLibrary: true,
-    coverId: "chess.jpg"
-  },
-  {
-    id: 2,
-    gameName: "Go",
-    alreadyInLibrary: false
-  },
-  {
-    id: 3,
-    gameName: "Sudoku",
-    alreadyInLibrary: true,
-    coverId: "sudoku.png"
-  }
-];
 
 function MyGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -35,17 +17,25 @@ useEffect(() => {
 }, []);
 
 
-  return (
-    <div>
-      <h1>My Games</h1>
-    
+ return (
+  <div className="my-games">
+    <h1>My Games</h1>
+
+    <div className="game-grid">
       {games.map((game: Game) => (
-        <div key={game.id}>
+        <div className="game-card" key={game.id}>
+          {game.coverId && (
+  <img
+    src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.coverId}.jpg`}
+    alt={game.gameName}
+  />
+)}
+
           <h2>{game.gameName}</h2>
-          {game.coverId && <img src={game.coverId} alt={game.gameName} />}
         </div>
       ))}
     </div>
-  );
+  </div>
+);
 }
 export default MyGames;

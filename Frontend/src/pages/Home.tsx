@@ -1,5 +1,6 @@
-import  Message  from "./Message";
-import ListGroup from "./ListGroup";
+import "./Home.css";
+import  Message  from "../components/Message";
+import ListGroup from "../components/ListGroup";
 import { logoutUser } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -11,14 +12,16 @@ const navigate = useNavigate();
   };
     
     return (
-        <div>
+        <div className="home">
       <div className="message-container">
         <Message />
       </div>
       <div className="list-container">
         <ListGroup />
       </div>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="logout-button" onClick={handleLogout}>
+  Logout
+</button>
     </div>
     )
 }

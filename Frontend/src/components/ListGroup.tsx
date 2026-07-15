@@ -1,16 +1,12 @@
 import { useState } from "react";
 import "./ListGroup.css";
 import { FaPlus } from "react-icons/fa";
-import {getGames, addGame} from "../api/game"
+import {addGame} from "../api/game"
+import type { Game } from "../types/Game";
 
 
 
-export type Game = {
-  id: number;
-  gameName: string;
-  alreadyInLibrary: boolean;
- coverId?: string;
-};
+
 
 type GameList = Game[];
 
@@ -48,9 +44,9 @@ function ListGroup() {
         <button type="submit">Search</button>
       </form>
 
-      <ul>
+      <div className="game-list">
   {games.map((g) => (
-  <li key={g.id} className="game-item">
+    <div key={g.id} className="game-item">
     <img
   src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${g.coverId}.jpg`}
   alt={g.gameName}
@@ -60,10 +56,9 @@ function ListGroup() {
     <button onClick={() => addGame(g)}>
       <FaPlus />
     </button>
-  </li>
+    </div>
 ))}
-  
-</ul>
+</div>
     </>
   );
 }

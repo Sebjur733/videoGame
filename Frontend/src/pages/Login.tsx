@@ -29,23 +29,25 @@ function Login() {
 
   return (
     <>
-    <div className="main">
-      <h1>Login</h1>
+    <div className="login-card">
+  <h1>Login</h1>
 
-      <input
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
+  <input
+    placeholder="Username"
+    onChange={(e) => setUsername(e.target.value)}
+  />
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+  <input
+    type="password"
+    placeholder="Password"
+    onChange={(e) => setPassword(e.target.value)}
+  />
 
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleRegister}>Register</button>
-    </div>
+  <div className="buttons">
+    <button onClick={handleLogin}>Login</button>
+    <button onClick={handleRegister}>Register</button>
+  </div>
+</div>
 
     <div className="games">
       <div className="game-image">

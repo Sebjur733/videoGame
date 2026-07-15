@@ -1,6 +1,6 @@
-import Home from "./components/Home";
-import Mygames from "./components/MyGames";
-import Login from "./components/Login";
+import Home from "./pages/Home";
+import Mygames from "./pages/MyGames";
+import Login from "./pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
