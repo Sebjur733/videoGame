@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\react\\testreact\\backend\\Backend.csproj": {}
+    "D:\\react\\testreact\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "D:\\react\\testreact\\backend\\Backend.csproj": {
+    "D:\\react\\testreact\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\react\\testreact\\backend\\Backend.csproj",
+        "projectUniqueName": "D:\\react\\testreact\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "D:\\react\\testreact\\backend\\Backend.csproj",
+        "projectPath": "D:\\react\\testreact\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\seban\\.nuget\\packages\\",
-        "outputPath": "D:\\react\\testreact\\backend\\obj\\",
+        "outputPath": "D:\\react\\testreact\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\seban\\AppData\\Roaming\\NuGet\\NuGet.Config",

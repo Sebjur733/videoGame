@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getGames } from "../api/game";
 import type { Game } from "../types/Game";
 import "./MyGames.css";
