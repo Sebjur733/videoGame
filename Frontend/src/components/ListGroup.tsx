@@ -18,7 +18,7 @@ function ListGroup() {
 
     const nameInput = document.getElementById("searchInput") as HTMLInputElement;
 
-    const res = await fetch("http://localhost:5200/api/game/send", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/game/send`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

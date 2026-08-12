@@ -9,7 +9,7 @@ export const loginUser = async (
   password: string
 ) => {
   const { data } = await axios.post<LoginResponse>(
-    "http://localhost:5200/api/user/login",
+    `${import.meta.env.VITE_API_URL}/api/user/login`,
     { username, password }
   );
 
@@ -21,7 +21,7 @@ export const registerUser = async (
   password: string
 ) => {
   const { data } = await axios.post<string>(
-    "http://localhost:5200/api/user/register",
+    `${import.meta.env.VITE_API_URL}/api/user/register`,
     { username, password }
   );
 console.log(data);

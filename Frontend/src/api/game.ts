@@ -5,7 +5,7 @@ import axios from 'axios';
 export async function getGames() {
     const user = localStorage.getItem("username");
     try {
-    const res = await axios.get<Game[]>(`http://localhost:5200/api/user/getGames/${user}`);
+    const res = await axios.get<Game[]>(`${import.meta.env.VITE_API_URL}/api/user/getGames/${user}`);
     res.data.map(g => console.log(g.gameName));
 
     return res.data;
@@ -20,7 +20,7 @@ export async function addGame(game:Game) {
     const user = localStorage.getItem("username");
     console.log("before http: " + game.id);
     try {
-        const res = await axios.post<string>("http://localhost:5200/api/user/addGames", {
+        const res = await axios.post<string>(`${import.meta.env.VITE_API_URL}/api/user/addGames`, {
             Game: {
         id: game.id,
         gameName: game.gameName,
