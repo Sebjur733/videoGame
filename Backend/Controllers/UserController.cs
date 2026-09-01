@@ -17,23 +17,41 @@ public UserController(UserDbContext context)
 
     // REGISTER
     [HttpPost("register")]
-    public async Task<ActionResult<User>> CreateUser(User user)
+    public async Task<ActionResult<User>> CreateUser(UserDto dto)
     {
-        _context.Users.Add(user);
-        
-        await _context.SaveChangesAsync();
+        var existingUser = await _context.Users
+        .FirstOrDefaultAsync(u => u.Username == dto.Username);
 
-        return Created();
+        if (existingUser != null)
+        return BadRequest("User already exists");
+
+        var user = new User
+    {
+        Username = dto.Username,
+        PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+    };
+
+    _context.Users.Add(user);
+    await _context.SaveChangesAsync();
+
+    return Ok("User registered");
     }
 
-    // LOGIN
-    [HttpPost("login")]
-    public IActionResult Login(User user)
-    {
+ // LOGIN
+[HttpPost("login")]
+public async Task<ActionResult<User>> Login(UserDto dto)
+{
+    var user = await _context.Users
+        .FirstOrDefaultAsync(u => u.Username == dto.Username);
 
-        return Ok("User logged in");
-         
-    }
+    if (user == null)
+        return Unauthorized();
+
+    if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+        return Unauthorized();
+
+    return Ok(user);
+}
 
  [HttpGet("getGames/{username}")]
 public async Task<IActionResult> GetGames(string username)

@@ -3,19 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../api/auth";
 import "./Login.css";
 
-function Login() {
+type LoginProps = {
+  onLogin: () => void;
+};
+
+function Login({ onLogin }: LoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      await loginUser(username, password);
-      navigate("/");
-    } catch {
-      console.log("Login failed");
-    }
-  };
+ const handleLogin = async () => {
+  try {
+    await loginUser(username, password);
+    onLogin();
+    navigate("/");
+  } catch {
+    console.log("Login failed");
+  }
+};
 
   
 
