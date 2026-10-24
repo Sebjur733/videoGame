@@ -38,6 +38,8 @@ private static readonly JsonSerializerOptions IgdbJsonOptions = new()
         );
 
         var tokenJson = await tokenRes.Content.ReadAsStringAsync();
+        Console.WriteLine("Twitch response:");
+Console.WriteLine(tokenJson);
         var token = JsonDocument.Parse(tokenJson)
             .RootElement.GetProperty("access_token").GetString();
 

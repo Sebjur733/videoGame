@@ -2,17 +2,26 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.Models;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
 {
    private readonly UserDbContext _context;
+private readonly IConfiguration _configuration;
    
-public UserController(UserDbContext context)
-    {
-        _context = context;
-    }
+public UserController(
+    UserDbContext context,
+    IConfiguration configuration)
+{
+    _context = context;
+    _configuration = configuration;
+}
    
 
     // REGISTER
@@ -39,7 +48,7 @@ public UserController(UserDbContext context)
 
  // LOGIN
 [HttpPost("login")]
-public async Task<ActionResult<User>> Login(UserDto dto)
+public async Task<IActionResult> Login(UserDto dto)
 {
     var user = await _context.Users
         .FirstOrDefaultAsync(u => u.Username == dto.Username);
@@ -50,15 +59,49 @@ public async Task<ActionResult<User>> Login(UserDto dto)
     if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
         return Unauthorized();
 
-    return Ok(user);
+    var claims = new[]
+    {
+        new Claim(ClaimTypes.Name, user.Username)
+    };
+
+    var key = new SymmetricSecurityKey(
+        Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)
+    );
+
+    var credentials = new SigningCredentials(
+        key,
+        SecurityAlgorithms.HmacSha256
+    );
+
+    var token = new JwtSecurityToken(
+        issuer: _configuration["Jwt:Issuer"],
+        audience: _configuration["Jwt:Audience"],
+        claims: claims,
+        expires: DateTime.UtcNow.AddHours(2),
+        signingCredentials: credentials
+    );
+
+    var tokenString = new JwtSecurityTokenHandler()
+        .WriteToken(token);
+
+    return Ok(new
+    {
+        token = tokenString
+    });
 }
 
- [HttpGet("getGames/{username}")]
-public async Task<IActionResult> GetGames(string username)
+ [Authorize]
+[HttpGet("getGames")]
+public async Task<IActionResult> GetGames()
 {
-    var user = await _context.Users
-        .Include(u => u.OwnedGames)
-        .FirstOrDefaultAsync(u => u.Username == username);
+    var username = User.FindFirstValue(ClaimTypes.Name);
+
+if (username == null)
+    return Unauthorized();
+
+var user = await _context.Users
+    .Include(u => u.OwnedGames)
+    .FirstOrDefaultAsync(u => u.Username == username);
 
     if (user == null)
         return NotFound("User not found");
@@ -73,15 +116,18 @@ public async Task<IActionResult> GetGames(string username)
     return Ok(games);
 }
 
+[Authorize]
 [HttpPost("addGames")]
 public async Task<IActionResult> AddGame([FromBody] AddGameDto value)
 {
-    if (value == null || string.IsNullOrWhiteSpace(value.User))
-        return BadRequest();
+    var username = User.FindFirstValue(ClaimTypes.Name);
 
-    var user = await _context.Users
-        .Include(u => u.OwnedGames)
-        .FirstOrDefaultAsync(u => u.Username == value.User);
+if (username == null)
+    return Unauthorized();
+
+var user = await _context.Users
+    .Include(u => u.OwnedGames)
+    .FirstOrDefaultAsync(u => u.Username == username);
 
     if (user == null)
         return NotFound();

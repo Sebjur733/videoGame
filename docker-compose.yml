@@ -15,7 +15,7 @@ services:
     ports:
       - "5200:5200"
     volumes:
-      - ./Backend/app.db:/app/app.db
+      - ./Backend/data:/app/data
     environment:
       - Igdb__ClientSecret=${IGDB_CLIENT_SECRET}
       - Jwt__Key=${JWT_KEY}

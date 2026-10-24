@@ -4,3 +4,13 @@
 
 **/bin/
 **/obj/
+
+# SQLite database
+Backend/app.db
+Backend/app.db-shm
+Backend/app.db-wal
+Backend/data/
+
+# .NET build files
+Backend/bin/
+Backend/obj/
