@@ -24,7 +24,18 @@ private static readonly JsonSerializerOptions IgdbJsonOptions = new()
         var client = new HttpClient();
 
         var clientId = _config["Igdb:ClientId"];
-        var clientSecret = _config["Igdb:ClientSecret"];
+var clientSecret = _config["Igdb:ClientSecret"];
+
+Console.WriteLine($"Client ID loaded: {!string.IsNullOrWhiteSpace(clientId)}");
+Console.WriteLine($"Client Secret loaded: {!string.IsNullOrWhiteSpace(clientSecret)}");
+Console.WriteLine($"Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+
+if (string.IsNullOrWhiteSpace(clientId) ||
+    string.IsNullOrWhiteSpace(clientSecret))
+{
+    throw new InvalidOperationException(
+        "IGDB ClientId or ClientSecret is missing from configuration.");
+}
 
         // 1. hent token fra Twitch
         var tokenRes = await client.PostAsync(

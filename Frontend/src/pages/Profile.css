@@ -1,0 +1,82 @@
+.profile-page {
+  width: min(100% - 32px, 640px);
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+}
+
+.profile-search-form {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-search-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.profile-search-form button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile-search-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.profile-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.profile-user-open-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-user-open-button:hover {
+  background: #444;
+}
+
+.profile-user-open-button:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 2px;
+}
+
+.profile-search-message {
+  margin-top: 16px;
+}
+
+.profile-search-error {
+  color: #a32020;
+}

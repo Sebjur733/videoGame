@@ -1,0 +1,17 @@
+.user-games-page {
+  width: min(100% - 32px, 800px);
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+}
+
+.user-games-back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.user-games-page h1 {
+  margin-bottom: 24px;
+}

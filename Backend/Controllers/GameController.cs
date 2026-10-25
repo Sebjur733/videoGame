@@ -14,7 +14,7 @@ public class GameController : ControllerBase
 
 // TODO: gotta change to search
 // Handles game search
-    [HttpPost("send")]
+    [HttpPost("searchGame")]
     public async Task<IActionResult> Receive([FromBody] string value)
     {
         Console.WriteLine("in controller before api result: " + value);

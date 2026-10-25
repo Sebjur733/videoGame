@@ -15,9 +15,13 @@ services:
     ports:
       - "5200:5200"
     volumes:
-      - ./Backend/data:/app/data
+      - game_library_data:/app/data
     environment:
-      - Igdb__ClientSecret=${IGDB_CLIENT_SECRET}
-      - Jwt__Key=${JWT_KEY}
-      - Jwt__Issuer=${JWT_ISSUER}
-      - Jwt__Audience=${JWT_AUDIENCE}
+      ConnectionStrings__DefaultConnection: "Data Source=/app/data/app.db"
+      Igdb__ClientSecret: "${IGDB_CLIENT_SECRET:-}"
+      Jwt__Key: "${JWT_KEY:-LocalDevelopmentOnly_ChangeThisKey_1234567890}"
+      Jwt__Issuer: "${JWT_ISSUER:-GameLibrary}"
+      Jwt__Audience: "${JWT_AUDIENCE:-GameLibrary}"
+
+volumes:
+  game_library_data:

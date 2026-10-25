@@ -1,8 +1,10 @@
 import Home from "./pages/Home";
 import Mygames from "./pages/MyGames";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import PrivateRoute from "./PrivateRoute";
-import { BrowserRouter, Routes, Route, Link, Navigate, useNavigate   } from "react-router-dom";
+import UserGames from "./pages/UserGames";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import "./App.css";
 import { FaUser } from "react-icons/fa";
 import { logoutUser, isAuthenticated } from "./api/auth";
@@ -50,6 +52,14 @@ const handleLogout = () => {
       </PrivateRoute>
     }
   />
+  <Route
+    path="/profile"
+    element={
+      <PrivateRoute>
+        <Profile />
+      </PrivateRoute>
+    }
+  />
 <Route
   path="/login"
   element={
@@ -60,6 +70,17 @@ const handleLogout = () => {
     )
   }
 />
+
+
+<Route
+  path="/users/:username"
+  element={
+    <PrivateRoute>
+      <UserGames />
+    </PrivateRoute>
+  }
+/>
+
 </Routes>
     </BrowserRouter>
   );
